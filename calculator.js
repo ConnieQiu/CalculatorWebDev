@@ -243,12 +243,9 @@ let clearButton = document.getElementById("clear-button");
 clearButton.addEventListener("click", clearDisplay);
 
 function clearDisplay(){
-    //if(lastOperation === "=" || lastOperation === "" || lastOperation === "AC"){
         numberOfOps = 0;
-        lastOperation = "AC"
+        //lastOperation = "AC"
         displayText.innerHTML = "";
-    //}else{
-        //displayText.innerHTML = displayText.innerHTML.slice(0, displayText.innerHTML.length-1);
-    //}
+
 }
 
