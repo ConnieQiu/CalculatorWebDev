@@ -17,14 +17,11 @@ let operationButtons = [...document.getElementsByClassName("operation-button")];
 if(operationButtons){
     operationButtons.forEach(function(operation){
         operation.addEventListener("click", function(){
-            //added for test if else and numberOfOps
-                numberOfOps++;
-                if(numberOfOps >= 2 && lastOperation != "="){
-                    let calculatedNum = calculateAnswer();
-                    displayText.innerHTML = calculatedNum += operation.textContent;
-                    //numberOfOps = 0;
+            numberOfOps++;
+            if(numberOfOps >= 2 && lastOperation != "="){
+                let calculatedNum = calculateAnswer();
+                displayText.innerHTML = calculatedNum += operation.textContent;
                 }else{
-                    //original
                     let opValue = operation.textContent;
                     displayText.innerHTML += opValue;
                     lastOperation = opValue;
@@ -32,6 +29,7 @@ if(operationButtons){
         })
     });
 }
+
 
 let factorialButton = document.getElementById("factorial");
 factorialButton.addEventListener("click", function(){
@@ -53,8 +51,8 @@ equalsButton.addEventListener("click", function(){
 });
 
 equalsButton.addEventListener("click", calculateAnswer);
+
 function calculateAnswer(){
-    //numberOfOps = 0;
     let currentDisplayText = document.getElementById("screen-bottom");
     displayTopHalf = document.getElementById("screen-top");
     displayTopHalf.innerHTML = currentDisplayText.innerHTML;
@@ -239,160 +237,18 @@ function calculateAnswer(){
             break;
         }
     }
-    /*if(currentDisplayText.innerHTML.includes("+")){
-        let displayNumbers = currentDisplayText.innerHTML.split("+");
-        let first_number = displayNumbers[0];
-        let second_number = displayNumbers[1];
-        if(!first_number || !second_number){
-            currentDisplayText.innerHTML = "Error";
-        }else{
-            currentDisplayText.innerHTML = (Number(first_number) + Number(second_number)).toFixed(12);
-        }
-    }else if(currentDisplayText.innerHTML.includes("x")){
-        let displayNumbers = currentDisplayText.innerHTML.split("x");
-        let first_number = displayNumbers[0];
-        let second_number = displayNumbers[1];
-        if(!first_number || !second_number){
-            currentDisplayText.innerHTML = "Error";
-        }else{
-            currentDisplayText.innerHTML = Number(first_number) * Number(second_number);
-        }
-    }else if(currentDisplayText.innerHTML.includes("÷")){
-        let displayNumbers = currentDisplayText.innerHTML.split("÷");
-        let first_number = displayNumbers[0];
-        let second_number = displayNumbers[1];
-        if(!first_number || !second_number){
-            currentDisplayText.innerHTML = "Error";
-        }else{
-            currentDisplayText.innerHTML = Number(first_number) / Number(second_number);
-        }
-    }else if(currentDisplayText.innerHTML.includes("-")){
-        let displayNumbers = currentDisplayText.innerHTML.split("-");
-        let first_number = displayNumbers[0];
-        let second_number = displayNumbers[1];
-        if(!first_number || !second_number){
-            currentDisplayText.innerHTML = "Error";
-        }else{
-            currentDisplayText.innerHTML = Number(first_number) - Number(second_number);
-        }
-    }else if(currentDisplayText.innerHTML.includes("!")){
-        let displayNumbers = currentDisplayText.innerHTML.split("!");
-        let number = displayNumbers[0];
-        if(!number){
-            currentDisplayText.innerHTML = "Error";
-        }else{
-            for(let i = Number(number) - 1; i > 0; i--){
-                number *= i;
-            }
-            currentDisplayText.innerHTML = number;
-        }
-    }else if(currentDisplayText.innerHTML.includes("%")){
-        let displayNumbers = currentDisplayText.innerHTML.split("%");
-        let number = displayNumbers[0];
-        if(!number){
-            currentDisplayText.innerHTML = "Error";
-        }else{
-            currentDisplayText.innerHTML = Number(number) / 100;
-        }
-    }else if(currentDisplayText.innerHTML.includes("sin")){
-        let displayNumbers = currentDisplayText.innerHTML.split("sin");
-        let firstNumber = displayNumbers[0];
-        let secondNumber = displayNumbers[1];
-        if(firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.sin(secondNumber) * firstNumber;
-        }else if(!firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.sin(secondNumber);
-        }else{
-            currentDisplayText.innerHTML = "Error";
-        }
-    }else if(currentDisplayText.innerHTML.includes("ln")){
-        let displayNumbers = currentDisplayText.innerHTML.split("ln");
-        let firstNumber = displayNumbers[0];
-        let secondNumber = displayNumbers[1];
-        if(firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.log(secondNumber) * firstNumber;
-        }else if(!firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.log(secondNumber);
-        }else{
-            currentDisplayText.innerHTML = "Error";
-        }
-    }else if(currentDisplayText.innerHTML.includes("cos")){
-        let displayNumbers = currentDisplayText.innerHTML.split("cos");
-        let firstNumber = displayNumbers[0];
-        let secondNumber = displayNumbers[1];
-        if(firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.cos(secondNumber) * firstNumber;
-        }else if(!firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.cos(secondNumber);
-        }else{
-            currentDisplayText.innerHTML = "Error";
-        }
-    }else if(currentDisplayText.innerHTML.includes("log")){
-        let displayNumbers = currentDisplayText.innerHTML.split("log");
-        let firstNumber = displayNumbers[0];
-        let secondNumber = displayNumbers[1];
-        if(firstNumber && secondNumber){
-            currentDisplayText.innerHTML = (Math.log(secondNumber)/Math.log(10)) * firstNumber;
-        }else if(!firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.log(secondNumber)/Math.log(10);
-        }else{
-            currentDisplayText.innerHTML = "Error";
-        }
-    }else if(currentDisplayText.innerHTML.includes("tan")){
-        let displayNumbers = currentDisplayText.innerHTML.split("tan");
-        let firstNumber = displayNumbers[0];
-        let secondNumber = displayNumbers[1];
-        if(firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.tan(secondNumber) * firstNumber;
-        }else if(!firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.tan(secondNumber);
-        }else{
-            currentDisplayText.innerHTML = "Error";
-        }
-    }else if(currentDisplayText.innerHTML.includes("√")){
-        let displayNumbers = currentDisplayText.innerHTML.split("√");
-        let firstNumber = displayNumbers[0];
-        let secondNumber = displayNumbers[1];
-        if(firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.sqrt(secondNumber) * firstNumber;
-        }else if(!firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.sqrt(secondNumber);
-        }else{
-            currentDisplayText.innerHTML = "Error";
-        }
-    }else if(currentDisplayText.innerHTML.includes("EXP")){
-        let displayNumbers = currentDisplayText.innerHTML.split("EXP");
-        let firstNumber = displayNumbers[0];
-        let secondNumber = displayNumbers[1];
-        if(firstNumber && secondNumber){
-            currentDisplayText.innerHTML = firstNumber * Math.pow(10, secondNumber);
-        }else if(firstNumber && !secondNumber){
-            currentDisplayText.innerHTML = firstNumber;
-        }else{
-            currentDisplayText.innerHTML = "Error";
-        }
-    }else if(currentDisplayText.innerHTML.includes("^")){
-        let displayNumbers = currentDisplayText.innerHTML.split("^");
-        let firstNumber = displayNumbers[0];
-        let secondNumber = displayNumbers[1];
-        if(firstNumber && secondNumber){
-            currentDisplayText.innerHTML = Math.pow(firstNumber, secondNumber);
-        }else{
-            currentDisplayText.innerHTML = "Error";
-        }
-    }*/
 }
-
-
 
 let clearButton = document.getElementById("clear-button");
 clearButton.addEventListener("click", clearDisplay);
 
 function clearDisplay(){
-    if(lastOperation === "=" || lastOperation === ""){
+    //if(lastOperation === "=" || lastOperation === "" || lastOperation === "AC"){
+        numberOfOps = 0;
+        lastOperation = "AC"
         displayText.innerHTML = "";
-    }else{
-        displayText.innerHTML = displayText.innerHTML.slice(0, displayText.innerHTML.length-1);
-    }
+    //}else{
+        //displayText.innerHTML = displayText.innerHTML.slice(0, displayText.innerHTML.length-1);
+    //}
 }
 
